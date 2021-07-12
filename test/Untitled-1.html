@@ -1,0 +1,23 @@
+
+var div=document....;
+//点击按钮弹出div 在点击按钮关闭该div
+按钮.onclick=function()
+{
+if(div.style.display=="none")
+{
+div.style.display="block";
+}
+else
+{
+div.style.display="none";
+}
+}
+//点击其他地方关闭div
+document.onclick=function()
+{
+div.style.display="none";
+}
+//为了防止点击div 也关闭div 所以这里要防止冒泡
+div.onclick=function()
+{
+return false;
