@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="shortcut icon" href="img/logo.png" />
+    <link rel="stylesheet" href="css/ol.css">
+    <link rel="stylesheet" href="css/control.css">
+    <script src="js/ol.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/jsonstyle.js"></script>
+    <script src="js/layerset.js"></script>
+
+    <title>GIS云平台</title>
+
+    <script type="text/javascript">
+    
+        window.onload = function(){
+            map();
+            loadVectData();
+            a();
+        }
+        
+    </script>
+    
+</head>
+
+<body>
+    <header>
+        <a class="logo" href="">
+            <img src="img/logo.png" alt="GIS云平台">
+            <span>GIS云平台</span>
+        </a>
+    </header>
+
+<nav>
+    <a title="控件"  onclick="displayWindows('controls_windows')" >
+        <img id="controls" src="img/controls.png" alt="控件组">
+    </a>
+    <a title="图层"  onclick="displayWindows('layers_windows')" >
+        <img id="controls" src="img/layers.png" alt="图层组">
+    </a>
+</nav>
+
+
+<!--控件窗口-->
+<div id="controls_windows" >
+    <div>
+        <div id="ctname">全屏控件</div>
+        <button onclick="add(fullScream)" >开启</button>
+        <button onclick="remove(fullScream)" >关闭</button>
+    </div>
+    <br>
+    <hr>
+    <div>
+        <div id="ctname">比例尺控件</div>
+        <button onclick="add(scaleLine)" >开启</button>
+        <button onclick="remove(scaleLine)" >关闭</button>
+    </div>
+    <br>
+    <hr>
+    <div>
+        <div id="ctname">显示鼠标位置</div>
+        <button onclick="add(mousePositionControl)" >开启</button>
+        <button onclick="remove(mousePositionControl)" >关闭</button>
+        <button onclick="fadeIn(mpcfrom,20)" >设置</button>
+
+    </div>
+    <br>
+    <hr>
+    <div id="mouse-position"></div>
+
+    <form id="mpcfrom">
+        <label style="float: right;">:投影</label>
+        <select id="projection">
+            <option value="EPSG:3857">Web墨卡托坐标</option>
+            <option value="EPSG:4326">经纬度坐标</option>
+
+        </select>
+        <br>
+        <label style="float: right;">:精度</label>
+        <input id="precision" type="number" min="0" max="12" value="4" />
+    </form>
+</div>
+
+<!--图层窗口-->
+<div id="layers_windows">
+        <div style=" text-align:center;font-weight: bold;">图层列表</div><hr>
+            <td><input type="CheckBox" onchange="layerCheck(this,td_cia)" checked />天地图影像注记图层<br>
+            <td><input type="CheckBox" onchange="layerCheck(this,td_img)" checked />天地图影像图层<br>
+            <td><input type="CheckBox" onchange="layerCheck(this,td_vec)" checked />天地图矢量图层<br>
+            <td><input type="CheckBox" onchange="layerCheck(this,td_cva)" checked />天地图矢量图层注记<br>
+            <td><input type="CheckBox" onchange="layerCheck(this,osm)"  />OpenStreetMap<br>
+            <td><input type="CheckBox" onchange="layerCheck(this,vectorLayer)"  />vectorLayer<br>
+
+        </td>
+</div>
+
+
+
+<div id="map"></div>
+</body>
+</html>
