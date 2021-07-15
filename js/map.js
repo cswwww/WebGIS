@@ -30,6 +30,7 @@ function controlSet(){
 function map(){
     controlSet()
     layerSet()
+    loadVectData()
 map1 = new ol.Map({
     target: 'map', //地图容器div的id
     loadTilesWhileInteracting: true,
@@ -39,7 +40,6 @@ map1 = new ol.Map({
         zoom: 3  //地图初始显示级别
     })
 });
-
 map1.addLayer(td_cva);
 map1.addLayer(td_vec);
 map1.addLayer(td_img);
@@ -47,6 +47,7 @@ map1.addLayer(td_cia);
 map1.addControl(zoomToExtent);
 map1.addInteraction(dragRotateAndZoom);
 
+map1.addLayer(vectorLayer);
 
 
 
@@ -68,4 +69,3 @@ function layerCheck(checkbox,ele){
     }
     }
     
-

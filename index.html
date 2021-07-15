@@ -13,17 +13,14 @@
     <script src="js/home.js"></script>
     <script src="js/jsonstyle.js"></script>
     <script src="js/layerset.js"></script>
-
     <title>GIS云平台</title>
 
     <script type="text/javascript">
     
         window.onload = function(){
             map();
-            loadVectData();
             a();
         }
-        
     </script>
     
 </head>
@@ -47,7 +44,7 @@
 
 
 <!--控件窗口-->
-<div id="controls_windows" >
+<div id="controls_windows" class="ctdiv_style" >
     <div>
         <div id="ctname">全屏控件</div>
         <button onclick="add(fullScream)" >开启</button>
@@ -87,14 +84,14 @@
 </div>
 
 <!--图层窗口-->
-<div id="layers_windows">
+<div id="layers_windows" class="ctdiv_style">
         <div style=" text-align:center;font-weight: bold;">图层列表</div><hr>
             <td><input type="CheckBox" onchange="layerCheck(this,td_cia)" checked />天地图影像注记图层<br>
             <td><input type="CheckBox" onchange="layerCheck(this,td_img)" checked />天地图影像图层<br>
             <td><input type="CheckBox" onchange="layerCheck(this,td_vec)" checked />天地图矢量图层<br>
             <td><input type="CheckBox" onchange="layerCheck(this,td_cva)" checked />天地图矢量图层注记<br>
             <td><input type="CheckBox" onchange="layerCheck(this,osm)"  />OpenStreetMap<br>
-            <td><input type="CheckBox" onchange="layerCheck(this,vectorLayer)"  />vectorLayer<br>
+            <td><input type="CheckBox" onchange="layerCheck(this,vectorLayer)" checked />中国矢量地图<br>
 
         </td>
 </div>
