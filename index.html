@@ -1,103 +1,124 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cmn-Hans">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="shortcut icon" href="img/logo.png" />
-    <link rel="stylesheet" href="css/ol.css">
-    <link rel="stylesheet" href="css/control.css">
-    <script src="js/ol.js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/home.js"></script>
-    <script src="js/jsonstyle.js"></script>
-    <script src="js/layerset.js"></script>
-    <title>GIS云平台</title>
+    <title>WebGIS平台</title>
+    <link rel="icon" href="../img/openlayers.png">
+    <link rel="stylesheet" href="/css/ol.css">
+    <link rel="stylesheet" href="/css/map.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/js/ol.js"></script>
+    <script src="/js/map.js"></script>
+    <script src="/js/layerchange.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script src="/js/jquery-3.6.0.js"></script>
 
     <script type="text/javascript">
-    
-        window.onload = function(){
-            map();
-            a();
-        }
+        window.onload = function () {map();}
+        layer.msg('您好！地图界面的<br>左上角可以关闭导航栏，<br>右上角有地图控件菜单，<br>右下角科切换底图。');
+
     </script>
-    
 </head>
-
 <body>
-    <header>
-        <a class="logo" href="">
-            <img src="img/logo.png" alt="GIS云平台">
-            <span>GIS云平台</span>
-        </a>
-    </header>
+    <input type="checkbox" name="" id="check">
+    <label for="check">
+        <i class="layui-icon layui-icon-more clickbtn" id="btn" title="侧边栏"></i>
+    </label>
+    <!-- 设置侧边导航栏 -->
+    <nav>
+        <ul class="layui-nav layui-nav-tree layui-nav-side" lay-filter="test">
+            <header>
+                <a href="/index.html" title="首页">
+                    <img src="/img/logo.png" alt="logo">
+                    <span style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">WebGIS</span>
+                </a>
+            </header>  
+                <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;">主要功能</a>
+                <dl class="layui-nav-child">
+                  <dd><a class="layui-this" href="/index.html">看看地图</a></dd>
+                  <dd><a href="/tools/index.html">图层探查</a></dd>
+                  <!-- <dd><a href="javascript:;">数据展示</a></dd>
+                  <dd><a href="">数据处理</a></dd> -->
+                </dl>
+                </li>
+              <!-- <li class="layui-nav-item ">
+                <a href="javascript:;">测量实习</a>
+                <dl class="layui-nav-child">
+                  <dd><a href="">数字地形测量学</a></dd>
+                  <dd><a href="">大地测量学</a></dd>
+                  <dd><a href="">不动产测量学</a></dd>
+                  <dd><a href="">GNSS测量与数据处理</a></dd>
+                  <dd><a href="">摄影测量学</a></dd>
+                </dl>
+              </li> -->
+              <li class="layui-nav-item">
+                <a href="javascript:;">相关工具</a>
+                <dl class="layui-nav-child">
+                  <dd><a href="/tools/coordinatetransform/index.html">坐标转换（开发中）</a></dd>
+                </dl>
+              </li>
+        </ul>
+    </nav>
+    <div id="map"></div>
+    <div class="basemap" id="basemap0">
+        <a id="tianditu" title="天地图" href="javascript:;" onclick="tiandituO()"></a>
+        <a id="osm" title="OpenStreetMap" href="javascript:;" onclick="osmO()"></a>
+        <a id="stamen" href="javascript:;" onclick="stamenO()"></a>
+        <!-- <a id="gaode" href="javascript:;" onclick="gaodeO()"></a> -->
+        <span>当前底图</span>
+    </div>    
+    
 
-<nav>
-    <a title="控件"  onclick="displayWindows('controls_windows')" >
-        <img id="controls" src="img/controls.png" alt="控件组">
-    </a>
-    <a title="图层"  onclick="displayWindows('layers_windows')" >
-        <img id="controls" src="img/layers.png" alt="图层组">
-    </a>
-</nav>
-
-
-<!--控件窗口-->
-<div id="controls_windows" class="ctdiv_style" >
-    <div>
-        <div id="ctname">全屏控件</div>
-        <button onclick="add(fullScream)" >开启</button>
-        <button onclick="remove(fullScream)" >关闭</button>
-    </div>
-    <br>
-    <hr>
-    <div>
-        <div id="ctname">比例尺控件</div>
-        <button onclick="add(scaleLine)" >开启</button>
-        <button onclick="remove(scaleLine)" >关闭</button>
-    </div>
-    <br>
-    <hr>
-    <div>
-        <div id="ctname">显示鼠标位置</div>
-        <button onclick="add(mousePositionControl)" >开启</button>
-        <button onclick="remove(mousePositionControl)" >关闭</button>
-        <button onclick="fadeIn(mpcfrom,20)" >设置</button>
-
-    </div>
-    <br>
-    <hr>
-    <div id="mouse-position"></div>
-
-    <form id="mpcfrom">
-        <label style="float: right;">:投影</label>
-        <select id="projection">
-            <option value="EPSG:3857">Web墨卡托坐标</option>
-            <option value="EPSG:4326">经纬度坐标</option>
-
-        </select>
-        <br>
-        <label style="float: right;">:精度</label>
-        <input id="precision" type="number" min="0" max="12" value="4" />
+<!-- 地图控件功能 -->
+<div id="moreapp">
+    <input type="button" name="" id="morecontrols">
+    <label for="morecontrols" onclick="checkwindow()">
+        <i class="layui-icon layui-icon-app clickbtn" id="morecontrolsbtn" title="更多地图控件" ></i>
+    </label>
+</div>
+<div id="setwindow">
+    <form >
+        <ul>
+            <!-- <li>
+                <div>全屏控件</div>
+                <input type="checkbox" name="fullScream" onchange="checkControls(this,fullScream)">
+            </li> -->
+            <!-- <li>
+                <div>鹰眼控件</div>
+                <input type="checkbox" name="overview">
+            </li> -->
+            <li>
+                <div>比例尺</div>
+                <input type="checkbox" name="scaleline" checked onchange="checkControls(this,scaleLine)">
+            </li>
+            <!-- <li>
+                <div>缩放条</div>
+                <input type="checkbox" name="zoomslide">
+            </li> -->
+            <!-- <li>
+                <div>缩放按钮</div>
+                <input type="checkbox" name="zoom" checked onchange="checkControls(this,zoom)"> 
+            </li> -->
+            <li>
+                <div>聚焦到广工</div>
+                <input type="checkbox" name=""  checked onchange="checkControls(this,zoomToExtent)">
+            </li>
+            <!-- <li>
+                <div>地图旋转</div>
+                <input type="checkbox" name="rotate"  onchange="checkControls(this,rotate)">
+            </li> -->
+            <li>
+                <div>鼠标位置</div>
+                <input type="checkbox" name="mouseposition"  onchange="checkControls(this,mousePositionControl)">
+            </li>
+        </ul>
     </form>
 </div>
+<div class="custom-mouse-position "></div>
 
-<!--图层窗口-->
-<div id="layers_windows" class="ctdiv_style">
-        <div style=" text-align:center;font-weight: bold;">图层列表</div><hr>
-            <td><input type="CheckBox" onchange="layerCheck(this,td_cia)" checked />天地图影像注记图层<br>
-            <td><input type="CheckBox" onchange="layerCheck(this,td_img)" checked />天地图影像图层<br>
-            <td><input type="CheckBox" onchange="layerCheck(this,td_vec)" checked />天地图矢量图层<br>
-            <td><input type="CheckBox" onchange="layerCheck(this,td_cva)" checked />天地图矢量图层注记<br>
-            <td><input type="CheckBox" onchange="layerCheck(this,osm)"  />OpenStreetMap<br>
-            <td><input type="CheckBox" onchange="layerCheck(this,vectorLayer)" checked />中国矢量地图<br>
-
-        </td>
-</div>
-
-
-
-<div id="map"></div>
 </body>
 </html>

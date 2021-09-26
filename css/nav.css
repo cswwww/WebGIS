@@ -1,0 +1,104 @@
+/* 侧边导航栏头部 */
+.layui-nav header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+.layui-nav header span{
+    position: relative;
+    font-family:"楷体","楷体_GB2312";
+    font-size: 23px;
+    top: 5px;
+}
+.layui-nav header a{
+    color: white;
+    position: relative;
+    left: 10px;
+    transition: all ease .5s;
+    -webkit-transition: all ease .5s;
+    -moz-transition: all ease .5s;
+    -ms-transition: all ease .5s;
+    -o-transition: all ease .5s;
+}
+.layui-nav header a:hover{
+    color: rgb(199, 124, 124);
+}
+
+.layui-nav header img{
+    height: 50px;
+    width: 50px;
+    padding-right: 10px;
+}
+
+ul.layui-nav-tree{
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+}
+
+#check,#controlset,#morecontrols{
+    display: none;
+}
+
+label .clickbtn{
+    color: rgb(116, 0, 0);
+    z-index: 99999;
+    position: fixed;
+    cursor: pointer;
+    font-size: 25px;
+
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    -ms-transition: all .5s;
+    -o-transition: all .5s;
+}
+label .clickbtn:hover{
+    color: yellowgreen;
+}
+label #btn{
+    left: 210px;
+    top: 10px;
+}
+
+label #cset{
+    z-index: 9;
+    position: fixed;
+    bottom: 18px;
+    left: 100px;
+}
+label #thelp{
+    z-index: 9;
+    position: fixed;
+    bottom: 18px;
+    left: 160px;
+}
+
+
+#check:checked ~ nav ul.layui-nav-tree {
+    left: -200px; 
+}
+#check:checked ~ nav ul #cset {
+    left: -100px; 
+}
+#check:checked ~ nav ul #thelp {
+    left: -160px; 
+}
+#check:checked ~ label #btn{
+    left: 10px;
+}
+
+.main{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(44, 44, 44);
+}
+.main section{
+    color: whitesmoke;
+    font-size: 10rem;
+}
