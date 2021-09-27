@@ -29,6 +29,7 @@ document.addEventListener('mouseout', function () {
 
 function layerSpy() {
     map()
+map1.removeLayer(td_cia);
 // 绘制蒙版
 td_img.on("prerender",function(event) { // 在每次绘制影像图层之前触发
     let ctx = event.context;    // 获取canvase渲染上下文

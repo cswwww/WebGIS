@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html> 
+<head>
+<title>瓦片原理-OSM</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+    }
+    html, body, #map {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+</head>
+<body>
+<div id="map"></div>
+</body>
+
+<script>
+var map = new L.Map('map', {  center: [41, 115], zoom: 0});
+var tiles = new L.GridLayer();
+tiles.createTile = function(coords) {
+console.log('coords:');
+console.log(coords);
+
+// 创建DOM装载瓦片
+var tile = L.DomUtil.create('canvas', 'leaflet-tile');
+var ctx = tile.getContext('2d');
+// 获取瓦片尺寸
+var size = this.getTileSize();
+console.log('size:');
+console.log(size);
+tile.width = size.x;
+tile.height = size.y;
+// 计算瓦片左上角的像素坐标
+var nwPoint = coords.scaleBy(size);
+// 计算瓦片左上角的地理坐标
+var nw = map.unproject(nwPoint, coords.z);
+// 计算瓦片右下角的像素坐标
+seCoords = new L.Point(coords.x+1,coords.y+1);
+seCoords.z = coords.z;
+console.log('seCoords:');
+console.log(seCoords);
+// 计算瓦片右下角的地理坐标
+var sePoint = seCoords.scaleBy(size);
+var se = map.unproject(sePoint, coords.z);
+// 加载瓦片图像
+var img = new Image();
+var subdomains = ['a', 'b', 'c'];
+var index = Math.abs(coords.x + coords.y) % subdomains.length;
+img.src = 'http://'+subdomains[index]+'.tile.openstreetmap.org/'+coords.z+'/'+coords.x+'/'+coords.y+'.png';
+console.log(img);
+ctx.drawImage(img,0,0,size.x,size.y);
+console.log(ctx);
+// 标识对应的瓦片信息
+// 背景颜色
+ctx.fillStyle = 'white';
+// 背景尺寸
+ctx.fillRect(0, 0, size.x, 90);
+// 字体颜色
+ctx.fillStyle = 'black';
+ctx.fillText('x: ' + coords.x + ', y: ' + coords.y + ', zoom level: ' + coords.z, 20, 20);
+ctx.fillText('minlng: ' + nw.lng + ', minlat: ' + se.lat, 20, 40);
+ctx.fillText('maxlng: ' + se.lng + ', matlat: ' + nw.lat, 20, 60);
+var dlng = se.lng - nw.lng;
+var dlat = nw.lat - se.lat;
+ctx.fillText('dlng: ' + dlng + ', dlat: ' + dlat, 20, 80);
+ctx.strokeStyle = 'red';
+ctx.beginPath();
+ctx.moveTo(0, 0);
+ctx.lineTo(size.x-1, 0);
+ctx.lineTo(size.x-1, size.y-1);
+ctx.lineTo(0, size.y-1);
+ctx.closePath();
+ctx.stroke();
+return tile;
+};
+// 加载OSM瓦片代码
+// L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//    attribution: 'Map data &copy; <a href="http://www.osm.org">OpenStreetMap</a>'
+// }).addTo(map);
+tiles.addTo(map);
+</script>
+</html>

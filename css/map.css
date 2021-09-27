@@ -16,6 +16,9 @@
 .ol-zoom{
     top: 8em;
 }
+.ol-scale-line{
+    left: 35px;
+}
 
 .basemap{
     flex-direction: row-reverse;

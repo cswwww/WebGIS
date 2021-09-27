@@ -1,99 +1,33 @@
-/*  
-*   设置图层信息
-*/
-
 var map1;
-let td_vec, td_cva, td_img, td_cia;
-let osm;
-let bingMap;
-let vectorLayer;
-let stamen;
-let gaode;
-function layerSet(){
-     td_vec = new ol.layer.Tile({
-        title: "天地图矢量图层注记",
-        source: new ol.source.XYZ({
-            url: "http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=0a5eb6c7a016c54112aafab4b0a274ee",
-            attributions: "使用天地图",
-            wrapX: false
-        }),
-        preload: Infinity
-    });
-     td_cva = new ol.layer.Tile({
-        title: "天地图矢量图层",
-        source: new ol.source.XYZ({
-            url: "http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=0a5eb6c7a016c54112aafab4b0a274ee",
-            wrapX: false
-        }),
-        preload: Infinity
-    });
-     td_img = new ol.layer.Tile({
-        name: "天地图影像图层",
-        source: new ol.source.XYZ({
-            url: "http://t0.tianditu.com/DataServer?T=img_w&x={x}&y={y}&l={z}&tk=0a5eb6c7a016c54112aafab4b0a274ee",
-            wrapX: false
-        })
-    });
-     td_cia = new ol.layer.Tile({
-        name: "天地图影像注记图层",
-        source: new ol.source.XYZ({
-            url: "http://t0.tianditu.com/DataServer?T=cia_w&x={x}&y={y}&l={z}&tk=0a5eb6c7a016c54112aafab4b0a274ee",
-            wrapX: false
-        })
-    });
-    osm = new ol.layer.Tile({
-                source: new ol.source.OSM()
-    });
-    stamen = new ol.layer.Tile({
-        source: new ol.source.Stamen({ layer: 'watercolor' }),
-    });
-    gaode = new ol.layer.Tile({
-        title: "高德地图",
-        source: new ol.source.XYZ({
-            url: 'http://wprd0{1-4}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=7&x={x}&y={y}&z={z}',
-            wrapX: false
-        })
-    });
-    // bingMap = new ol.layer.Tile({
-    //             source: new ol.source.BingMaps({
-    //                 key: '略',    // 自行到Bing Map官网申请key
-    //                 imagerySet: 'Aerial'
-    //             }),
-    //             visible: false
-    //         });  
-};
-var styleFunction = function (feature, resolution) {
-    //根据要素类型设置几何要素的样式
-    return styles[feature.getGeometry().getType()];
-};
-function loadVectData() {
-    //实例化矢量数据源，用GeoJSON格式的类解析
-    var vectorSource = new ol.source.Vector({
-        url: "data/中华人民共和国 .json",
-        format: new ol.format.GeoJSON()
-    });
-    vectorLayer = new ol.layer.Vector({
-        //矢量数据源
-        source: vectorSource,
-        //样式设置
-        style: styleFunction
-    });
-};
-
 
 /*  
 *   控件设置
 */
 let 
 scaleLine,
-fullScream,
+fullScream, 
 zoomToExtent,
 mousePositionControl,
 zoom,
+overView,
 dragRotateAndZoom;
 function controlSet(){
-    scaleLine = new ol.control.ScaleLine({units: "metric" });
+    // 比例尺控件
+    scaleLine = new ol.control.ScaleLine({
+      units: "metric"      //设置比例尺单位，degrees、imperial、us、nautical、metric（度量单位）
+    });
+    // 全屏控件
     fullScream = new ol.control.FullScreen();
+    // 鹰眼控件
+      // var overviewMapControl = new ol.control.OverviewMap(); //默认样式鹰眼控件
+    overView = new ol.control.OverviewMap({       //自定义样式的鹰眼控件
+        className: 'ol-overviewmap ol-custom-overviewmap',
+        //鹰眼中加载同坐标系下不同数据源的图层（要求在同一投影坐標系下的）
+        layers: [new ol.layer.Tile({source: new ol.source.OSM()})],
+        collapseLabel: '\u00BB',    //鹰眼控件展开时功能按钮上的标识（网页的JS的字符编码）
+        label: '\u00AB',            //鹰眼控件折叠时功能按钮上的标识（网页的JS的字符编码）
+        collapsed: false            //初始为展开显示方式
+    });
     dragRotateAndZoom = new ol.interaction.DragRotateAndZoom()
     zoomToExtent = new ol.control.ZoomToExtent({extent: [12621260.628405089,2636330.454794517,12623641.264403043,2637313.087100964]});
     mousePositionControl = new ol.control.MousePosition({
@@ -137,7 +71,10 @@ map1 = new ol.Map({
     view: new ol.View({
         center: [12622513, 2636878], //地图初始中心点
         // center: ol.proj.fromLonLat([-109, 46.5]),    //使用投影函数设置中心
-        zoom: 15  //地图初始显示级别
+        // projection: 'EPSG:3857',
+        zoom: 15,  //地图初始显示级别
+        // minZoom: 1,
+        maxZoom: 18
     }),
     controls: ol.control.defaults({attribution:false}).extend([])
 });
@@ -148,6 +85,7 @@ map1.addLayer(td_cia);
 map1.addControl(scaleLine);
 map1.addControl(zoomToExtent);
 map1.addInteraction(dragRotateAndZoom);
+
 
 
 };
