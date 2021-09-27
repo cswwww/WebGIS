@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>加载矢量数据 —— WebGIS平台</title>
-    <link rel="icon" href="../img/openlayers.png">
+    <link rel="icon" href="/img/logo.png">
     <link rel="stylesheet" href="/css/ol.css">
     <link rel="stylesheet" href="/css/map.css">
     <link rel="stylesheet" href="/css/nav.css">
@@ -14,7 +14,7 @@
 
     <script src="/js/layerset.js"></script>
     <script src="/js/map.js"></script>
-        <script src="/js/jsonstyle.js"></script>
+        <script src="/tools/loadvector/jsonstyle.js"></script>
 
     <script src="/js/layerchange.js"></script>
     <script src="/layui/layui.js"></script>
@@ -27,6 +27,9 @@
             map1.removeLayer(td_vec);
             map1.removeLayer(td_img);
             map1.removeLayer(td_cia);
+            
+            var view = map1.getView();
+            view.setZoom(8);
             }
 
     </script>
@@ -49,8 +52,8 @@
                 <a href="javascript:;">主要功能</a>
                 <dl class="layui-nav-child">
                   <dd><a  href="/index.html">看看地图</a></dd>
-                  <dd><a href="/tools/layerspy.html">图层探查</a></dd>
-                  <dd><a class="layui-this" href="/tools/loadvector.html">加载矢量数据</a></dd>
+                  <dd><a href="/tools/layerspy/layerspy.html">图层探查</a></dd>
+                  <dd><a class="layui-this" href="/tools/loadvector/loadvector.html">加载矢量数据</a></dd>
 
                   <!-- <dd><a href="javascript:;">数据展示</a></dd>
                   <dd><a href="">数据处理</a></dd> -->

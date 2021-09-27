@@ -20,7 +20,7 @@ function controlSet(){
     // 全屏控件
     fullScream = new ol.control.FullScreen();
     // 鹰眼控件
-      // var overviewMapControl = new ol.control.OverviewMap(); //默认样式鹰眼控件
+    // var overviewMapControl = new ol.control.OverviewMap(); //默认样式鹰眼控件
     overView = new ol.control.OverviewMap({       //自定义样式的鹰眼控件
         // className: 'ol-overviewmap ol-custom-overviewmap',
         //鹰眼中加载同坐标系下不同数据源的图层（要求在同一投影坐標系下的）
@@ -29,6 +29,7 @@ function controlSet(){
         label: '\u00AB',            //鹰眼控件折叠时功能按钮上的标识（网页的JS的字符编码）
         collapsed: false            //初始为展开显示方式
     });
+    //按键Shift加上鼠标拖拽来围绕中心点旋转和缩放地图的功能
     dragRotateAndZoom = new ol.interaction.DragRotateAndZoom()
     //缩放
     zoomSlide = new ol.control.ZoomSlider();
@@ -36,7 +37,7 @@ function controlSet(){
     mousePositionControl = new ol.control.MousePosition({
         //坐标格式,将坐标保留4位小数位，并转换为字符串
         coordinateFormat: ol.coordinate.createStringXY(4),
-        projection: 'EPSG:3857',       /*4326|3857*/
+        projection: 'EPSG:4326',       /*4326|3857*/
         //坐标信息显示样式类名，默认是'ol-mouse-position'
         className: 'custom-mouse-position',
         //显示鼠标位置信息的目标容器(将控件渲染在该DOM元素中)

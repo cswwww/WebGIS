@@ -2,11 +2,10 @@
 *   设置图层信息
 */
 let td_vec, td_cva, td_img, td_cia;
-let osm;
+let osm,stamen;
 let bingMap;
-let stamen;
-let gaode;
-let googleMap;
+let ChinaOnlineStreetPurplishBlue ;
+let gaode,googleMap;
 function layerSet(){
      td_vec = new ol.layer.Tile({
         title: "天地图矢量图层注记",
@@ -55,6 +54,15 @@ function layerSet(){
         title: "高德地图",
         source: new ol.source.XYZ({
             url: 'http://wprd0{1-4}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=7&x={x}&y={y}&z={z}',
+            wrapX: false
+        })
+    });
+    ChinaOnlineStreetPurplishBlue = new ol.layer.Tile({
+        // 使用火星坐标系
+        //http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer
+        title: "蓝黑地图",
+        source: new ol.source.XYZ({
+            url: 'http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}',
             wrapX: false
         })
     });
