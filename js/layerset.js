@@ -16,6 +16,7 @@ function layerSet(){
             attributions: "使用天地图",
             wrapX: false
         }),
+        // visible: false,      // 隐藏该图层
         preload: Infinity
     });
      td_cva = new ol.layer.Tile({

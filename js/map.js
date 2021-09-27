@@ -6,7 +6,7 @@ var map1;
 let 
 scaleLine,
 fullScream, 
-zoomToExtent,
+zoomToExtent,zoomSlide,
 mousePositionControl,
 zoom,
 overView,
@@ -21,7 +21,7 @@ function controlSet(){
     // 鹰眼控件
       // var overviewMapControl = new ol.control.OverviewMap(); //默认样式鹰眼控件
     overView = new ol.control.OverviewMap({       //自定义样式的鹰眼控件
-        className: 'ol-overviewmap ol-custom-overviewmap',
+        // className: 'ol-overviewmap ol-custom-overviewmap',
         //鹰眼中加载同坐标系下不同数据源的图层（要求在同一投影坐標系下的）
         layers: [new ol.layer.Tile({source: new ol.source.OSM()})],
         collapseLabel: '\u00BB',    //鹰眼控件展开时功能按钮上的标识（网页的JS的字符编码）
@@ -29,6 +29,8 @@ function controlSet(){
         collapsed: false            //初始为展开显示方式
     });
     dragRotateAndZoom = new ol.interaction.DragRotateAndZoom()
+    //缩放
+    zoomSlide = new ol.control.ZoomSlider();
     zoomToExtent = new ol.control.ZoomToExtent({extent: [12621260.628405089,2636330.454794517,12623641.264403043,2637313.087100964]});
     mousePositionControl = new ol.control.MousePosition({
         //坐标格式,将坐标保留4位小数位，并转换为字符串
@@ -76,8 +78,9 @@ map1 = new ol.Map({
         // minZoom: 1,
         maxZoom: 18
     }),
-    controls: ol.control.defaults({attribution:false}).extend([])
+    controls: ol.control.defaults({attribution:false,zoom:false}).extend([])
 });
+
 map1.addLayer(td_cva);
 map1.addLayer(td_vec);
 map1.addLayer(td_img);
@@ -85,7 +88,6 @@ map1.addLayer(td_cia);
 map1.addControl(scaleLine);
 map1.addControl(zoomToExtent);
 map1.addInteraction(dragRotateAndZoom);
-
 
 
 };

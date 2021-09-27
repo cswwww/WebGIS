@@ -19,7 +19,7 @@
 
     <script type="text/javascript">
         window.onload = function () {map();}
-        layer.msg('您好！地图界面的<br>左上角可以关闭导航栏，<br>右上角有地图控件菜单，<br>右下角科切换底图。');
+        layer.alert('您好！地图界面的：<br>左上角可以关闭导航栏，<br>右上角有地图控件菜单，<br>右下角可以切换底图。<br>而且按住<b>Shift</b> 键拖动鼠标可以旋转地图哦。');
 
     </script>
 </head>
@@ -96,10 +96,10 @@
                 <div>比例尺</div>
                 <input type="checkbox" name="scaleline" checked onchange="checkControls(this,scaleLine)">
             </li>
-            <!-- <li>
+            <li>
                 <div>缩放条</div>
-                <input type="checkbox" name="zoomslide">
-            </li> -->
+                <input type="checkbox" name="zoomslide" onchange="checkControls(this,zoomSlide)">
+            </li>
             <!-- <li>
                 <div>缩放按钮</div>
                 <input type="checkbox" name="zoom" checked onchange="checkControls(this,zoom)"> 
@@ -114,6 +114,7 @@
             </li> -->
             <li>
                 <div>鼠标位置</div>
+                <!-- TODO: 添加修改所显示的坐标格式、小数位数的设置功能 -->
                 <input type="checkbox" name="mouseposition"  onchange="checkControls(this,mousePositionControl)">
             </li>
         </ul>
