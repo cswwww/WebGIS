@@ -1,4 +1,5 @@
 var map1;
+var projection = ol.proj.get('EPSG:3857');
 
 /*  
 *   控件设置
@@ -8,9 +9,9 @@ scaleLine,
 fullScream, 
 zoomToExtent,zoomSlide,
 mousePositionControl,
-zoom,
 overView,
 dragRotateAndZoom;
+
 function controlSet(){
     // 比例尺控件
     scaleLine = new ol.control.ScaleLine({
@@ -65,7 +66,6 @@ function checkControls(checkbox,ele){
 function map(){
   controlSet()
   layerSet()
-  loadVectData()
 map1 = new ol.Map({
     target: 'map', //地图容器div的id
     loadTilesWhileInteracting: true,
@@ -74,6 +74,7 @@ map1 = new ol.Map({
         center: [12622513, 2636878], //地图初始中心点
         // center: ol.proj.fromLonLat([-109, 46.5]),    //使用投影函数设置中心
         // projection: 'EPSG:3857',
+        projection: projection,
         zoom: 15,  //地图初始显示级别
         // minZoom: 1,
         maxZoom: 18
@@ -89,6 +90,11 @@ map1.addControl(scaleLine);
 map1.addControl(zoomToExtent);
 map1.addInteraction(dragRotateAndZoom);
 
-
+//获取地图视图
+// var view = map1.getView();
+// //平移地图
+// view.setCenter([12536865.056410152, 3635008.742201894]);
+// //地图缩放
+// view.setZoom(6);
 };
 

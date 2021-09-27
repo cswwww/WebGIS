@@ -18,9 +18,11 @@
     <script src="/js/jquery-3.6.0.js"></script>
 
     <script type="text/javascript">
-        window.onload = function () {map();}
-        layer.alert('您好！地图界面的：<br>左上角可以关闭导航栏，<br>右上角有地图控件菜单，<br>右下角可以切换底图。<br>而且按住<b>Shift</b> 键拖动鼠标可以旋转地图哦。');
+        window.onload = function () {
+            map();
 
+}
+        layer.alert('您好！地图界面的：<br>左上角可以关闭导航栏，<br>右上角有地图控件菜单，<br>右下角可以切换底图。<br>而且按住<b>Shift</b> 键拖动鼠标可以旋转地图哦。');
     </script>
 </head>
 <body>
@@ -42,6 +44,7 @@
                 <dl class="layui-nav-child">
                   <dd><a class="layui-this" href="/index.html">看看地图</a></dd>
                   <dd><a href="/tools/layerspy.html">图层探查</a></dd>
+                  <dd><a href="/tools/loadvector.html">加载矢量数据</a></dd> 
                   <!-- <dd><a href="javascript:;">数据展示</a></dd>
                   <dd><a href="">数据处理</a></dd> -->
                 </dl>

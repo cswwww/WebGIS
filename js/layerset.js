@@ -4,7 +4,6 @@
 let td_vec, td_cva, td_img, td_cia;
 let osm;
 let bingMap;
-let vectorLayer;
 let stamen;
 let gaode;
 let googleMap;
@@ -76,22 +75,3 @@ function layerSet(){
     //         });  
 };
 
-
-
-var styleFunction = function (feature, resolution) {
-    //根据要素类型设置几何要素的样式
-    return styles[feature.getGeometry().getType()];
-};
-function loadVectData() {
-    //实例化矢量数据源，用GeoJSON格式的类解析
-    var vectorSource = new ol.source.Vector({
-        url: "data/中华人民共和国 .json",
-        format: new ol.format.GeoJSON()
-    });
-    vectorLayer = new ol.layer.Vector({
-        //矢量数据源
-        source: vectorSource,
-        //样式设置
-        style: styleFunction
-    });
-};

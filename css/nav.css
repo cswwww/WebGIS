@@ -43,11 +43,12 @@ ul.layui-nav-tree{
 }
 
 label .clickbtn{
-    color: rgb(116, 0, 0);
+    color: red;
     z-index: 99999;
     position: fixed;
     cursor: pointer;
     font-size: 25px;
+    box-shadow: 2px 1px 3px #494949;
 
     transition: all .5s;
     -webkit-transition: all .5s;

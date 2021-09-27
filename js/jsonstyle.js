@@ -1,3 +1,4 @@
+
 /**
 *矢量几何要素的样式
 */
@@ -6,6 +7,7 @@ var image = new ol.style.Circle({
     fill: null,
     stroke: new ol.style.Stroke({ color: 'red', width: 1 })
 });
+
 var styles = {
     'Point': [
         new ol.style.Style({
@@ -46,7 +48,7 @@ var styles = {
             }),
             fill: new ol.style.Fill({
                 //多区的填充样式
-                color: 'rgba(255, 255, 0, 0.1)'
+                color: 'rgba(255, 255, 0, 0.4)'
             })
         })
     ],
@@ -99,3 +101,40 @@ var styles = {
         })
     ]
 };
+
+
+var styleFunction = function (feature, resolution) {
+    //根据要素类型设置几何要素的样式
+    return styles[feature.getGeometry().getType()];
+};
+
+
+/**
+* 将矢量几何要素显示到地图中
+* @param {String} type 数据类型
+* @param {String} data 数据的url地址
+*/
+//矢量数据图层
+let vectorLayer;
+var GuangzhouVector = new ol.source.Vector({
+    url: "/data/广州市.json",
+    format: new ol.format.GeoJSON()
+});
+
+function loadVectData() {
+    map();
+    //实例化矢量数据源，用GeoJSON格式的类解析
+    vectorLayer = new ol.layer.Vector({
+        //矢量数据源
+        source: GuangzhouVector,
+        //样式设置
+        style: styleFunction
+    });
+    //将矢量图层加载到地图中
+    map1.addLayer(gaode);
+
+    map1.addLayer(vectorLayer);
+
+
+
+}
