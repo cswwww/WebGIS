@@ -117,7 +117,7 @@ var styleFunction = function (feature, resolution) {
 //矢量数据图层
 let vectorLayer;
 var GuangzhouVector = new ol.source.Vector({
-    url: "/data/广州市.json",
+    url: "/data/gdut.json",
     format: new ol.format.GeoJSON()
 });
 
