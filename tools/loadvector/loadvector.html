@@ -41,41 +41,6 @@
     </label>
     <!-- 设置侧边导航栏 -->
     <nav>
-        <ul class="layui-nav layui-nav-tree layui-nav-side" lay-filter="test">
-            <header>
-                <a href="/index.html" title="首页">
-                    <img src="/img/logo.png" alt="logo">
-                    <span style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">WebGIS</span>
-                </a>
-            </header>  
-                <li class="layui-nav-item layui-nav-itemed">
-                <a href="javascript:;">主要功能</a>
-                <dl class="layui-nav-child">
-                  <dd><a  href="/index.html">看看地图</a></dd>
-                  <dd><a href="/tools/layerspy/layerspy.html">图层探查</a></dd>
-                  <dd><a class="layui-this" href="/tools/loadvector/loadvector.html">加载矢量数据</a></dd>
-
-                  <!-- <dd><a href="javascript:;">数据展示</a></dd>
-                  <dd><a href="">数据处理</a></dd> -->
-                </dl>
-                </li>
-              <!-- <li class="layui-nav-item ">
-                <a href="javascript:;">测量实习</a>
-                <dl class="layui-nav-child">
-                  <dd><a href="">数字地形测量学</a></dd>
-                  <dd><a href="">大地测量学</a></dd>
-                  <dd><a href="">不动产测量学</a></dd>
-                  <dd><a href="">GNSS测量与数据处理</a></dd>
-                  <dd><a href="">摄影测量学</a></dd>
-                </dl>
-              </li> -->
-              <li class="layui-nav-item">
-                <a href="javascript:;">相关工具</a>
-                <dl class="layui-nav-child">
-                  <dd><a href="/tools/coordinatetransform/index.html">坐标转换（计划中）</a></dd>
-                </dl>
-              </li>
-        </ul>
     </nav>
     <div id="map"></div>   
     
@@ -126,6 +91,10 @@
     </form>
 </div>
 <div class="custom-mouse-position "></div>
-
+<script type="text/javascript">
+    $(function(){
+        $('nav').load('/tools/modules/nav.html');
+    })
+</script>
 </body>
 </html>

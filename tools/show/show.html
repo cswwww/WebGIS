@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGIS平台结构</title>
+    <link rel="icon" href="../img/logo.png">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script src="/layui/layui.js"></script>
+    <script src="/js/jquery-3.6.0.js"></script>
+    <style>
+        .maina{
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            left: 200px;
+        }
+    </style>
+</head>
+<body>
+    <input type="checkbox" name="" id="check">
+    <label for="check">
+        <i class="layui-icon layui-icon-more clickbtn" id="btn" title="侧边栏"></i>
+    </label>
+    <nav></nav>
+
+    <div class="maina">
+        <img src="服务器.svg" alt="" />
+        <img src="网站.svg" alt="" />
+
+    </div>
+    <script type="text/javascript">
+      $(function(){
+          $('nav').load('/tools/modules/nav.html');
+      })
+  </script>
+
+</body>
+</html>
