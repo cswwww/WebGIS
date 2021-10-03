@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>调用WMS服务 —— WebGIS平台</title>
+    <title>调用WFS服务 —— WebGIS平台</title>
     <link rel="icon" href="/img/logo.png">
     <link rel="stylesheet" href="/css/ol.css">
     <link rel="stylesheet" href="/css/map.css">
@@ -20,11 +20,11 @@
     <script type="text/javascript">
         window.onload = function () {
             map();
-            // map1.removeLayer(td_cva);
+            map1.removeLayer(td_cva);
             map1.removeLayer(td_vec);
             map1.removeLayer(td_img);
             map1.removeLayer(td_cia);
-            map1.addLayer(wmsLayer);
+            map1.addLayer(wfsLayer);
 }
     </script>
     <style>
@@ -44,7 +44,7 @@
     <nav></nav>
     <div id="map"></div> 
     <div class="onsvg">
-        <img src="WMS.svg" alt="">
+        <img src="WFS.svg" alt="">
     </div>
     
 <!-- 地图控件功能 -->
@@ -57,10 +57,6 @@
 <div id="setwindow">
     <form >
         <ul>
-            <!-- <li>
-                <div>全屏控件</div>
-                <input type="checkbox" name="fullScream" onchange="checkControls(this,fullScream)">
-            </li> -->
             <li>
                 <div>鹰眼控件</div>
                 <input type="checkbox" name="overview" onchange="checkControls(this,overView)">
@@ -73,18 +69,10 @@
                 <div>缩放条</div>
                 <input type="checkbox" name="zoomslide" onchange="checkControls(this,zoomSlide)">
             </li>
-            <!-- <li>
-                <div>缩放按钮</div>
-                <input type="checkbox" name="zoom" checked onchange="checkControls(this,zoom)"> 
-            </li> -->
             <li>
                 <div>聚焦到广工</div>
                 <input type="checkbox" name=""  checked onchange="checkControls(this,zoomToExtent)">
             </li>
-            <!-- <li>
-                <div>地图旋转</div>
-                <input type="checkbox" name="rotate"  onchange="checkControls(this,rotate)">
-            </li> -->
             <li>
                 <div>鼠标位置</div>
                 <!-- TODO: 添加修改所显示的坐标格式、小数位数的设置功能 -->

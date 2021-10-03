@@ -131,7 +131,9 @@ function loadVectData() {
         style: styleFunction
     });
     //将矢量图层加载到地图中
-    map1.addLayer(gaode);
+    // map1.addLayer(gaode);
+    map1.addLayer(osm);
+
 
     map1.addLayer(vectorLayer);
 
