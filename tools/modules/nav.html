@@ -36,7 +36,6 @@
                   <dd><a href="/index.html">看看地图</a></dd>
                   <dd><a href="/tools/layerspy/layerspy.html">图层探查</a></dd>
                   <dd><a href="/tools/layerswipe/layerswipe.html">图层卷帘</a></dd> 
-                  <dd><a href="/tools/loadvector/loadvector.html">加载矢量数据</a></dd> 
 
                   <!-- <dd><a href="javascript:;">数据展示</a></dd>
                   <dd><a href="">数据处理</a></dd> -->
@@ -73,6 +72,47 @@
               </div>
         </ul>
     </nav>
+
+    <div id="setwindow">
+      <form >
+          <ul>
+              <!-- <li>
+                  <div>全屏控件</div>
+                  <input type="checkbox" name="fullScream" onchange="checkControls(this,fullScream)">
+              </li> -->
+              <li>
+                  <div>鹰眼控件</div>
+                  <input type="checkbox" name="overview" onchange="checkControls(this,overView)">
+              </li>
+              <li>
+                  <div>比例尺</div>
+                  <input type="checkbox" name="scaleline" checked onchange="checkControls(this,scaleLine)">
+              </li>
+              <li>
+                  <div>缩放条</div>
+                  <input type="checkbox" name="zoomslide" onchange="checkControls(this,zoomSlide)">
+              </li>
+              <!-- <li>
+                  <div>缩放按钮</div>
+                  <input type="checkbox" name="zoom" checked onchange="checkControls(this,zoom)"> 
+              </li> -->
+              <li>
+                  <div>聚焦到广工</div>
+                  <input type="checkbox" name=""  checked onchange="checkControls(this,zoomToExtent)">
+              </li>
+              <!-- <li>
+                  <div>地图旋转</div>
+                  <input type="checkbox" name="rotate"  onchange="checkControls(this,rotate)">
+              </li> -->
+              <li>
+                  <div>鼠标位置</div>
+                  <!-- TODO: 添加修改所显示的坐标格式、小数位数的设置功能 -->
+                  <input type="checkbox" name="mouseposition"  onchange="checkControls(this,mousePositionControl)">
+              </li>
+          </ul>
+      </form>
+  </div>
+  <div class="custom-mouse-position "></div>
 
 </body>
 </html>

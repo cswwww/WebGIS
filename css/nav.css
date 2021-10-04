@@ -48,7 +48,6 @@ label .clickbtn{
     position: fixed;
     cursor: pointer;
     font-size: 25px;
-    box-shadow: 2px 1px 3px #494949;
 
     transition: all .5s;
     -webkit-transition: all .5s;

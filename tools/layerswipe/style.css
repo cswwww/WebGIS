@@ -1,0 +1,28 @@
+
+input[type=range]:focus {
+    outline: none;
+}.rangeMain {
+    
+    background-size: 98% 3px;
+    margin: auto;
+    width: 80%;
+    background: linear-gradient(to right, #ccc 0%, #ccc 100%);
+    outline: none;
+    -webkit-appearance: none; /*清除系统默认样式*/
+    height: 0px; /*横条的高度*/
+   }
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3),  0 3px 5px rgba(0, 0, 0, 0.2);
+  cursor: move;
+  -webkit-appearance: none;
+  border: 0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
